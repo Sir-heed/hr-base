@@ -10,8 +10,17 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 '''
 
+import os
 from datetime import timedelta
 from pathlib import Path
+
+
+def get_required(name):
+    try:
+        return os.environ[name]
+    except KeyError:
+        raise RuntimeError(f'Missing {name} enviroment variable!')
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +30,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-khuctmn7nie6y^d-=d8fo+4o2#l072+@ry$gr%2z+53oh4n1$k'
+SECRET_KEY = get_required('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
 
 # Application definition
@@ -83,9 +92,13 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': get_required('POSTGRES_HOST'),
+        'PORT': os.getenv('POSTGRES_PORT', '5432'),
+        'USER': get_required('POSTGRES_USER'),
+        'PASSWORD': get_required('POSTGRES_PASSWORD'),
+        'NAME': get_required('POSTGRES_DB'),
+    },
 }
 
 

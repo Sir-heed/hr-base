@@ -9,11 +9,10 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 RUN apt-get update \
-    && apt-get install -y gcc python3-dev musl-dev libmagic1 libffi-dev netcat \
-     default-libmysqlclient-dev build-essential git
+    && apt-get install -y gcc python3-dev musl-dev libmagic1 libffi-dev netcat-openbsd
 
 # Install dependencies
-COPY ./requirements.txt ./requirements.txt
+COPY app/requirements.txt ./requirements.txt
 RUN pip install --upgrade pip
 RUN pip install -r ./requirements.txt
 
