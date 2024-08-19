@@ -22,3 +22,4 @@
 - Run `docker build`
 - Run `docker compose up`
 - App should run by default on `0.0.0.0:8000`
+- Swagger docs `0.0.0.0:8000/api/v1/doc`
