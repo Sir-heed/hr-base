@@ -4,7 +4,7 @@ from rest_framework import serializers
 from accounts.choices import UserRole
 from accounts.models import User
 from accounts.serializers import UserSerializer
-from core.serializers import ModelSerializer
+from app.serializers import ModelSerializer
 from . import models
 
 

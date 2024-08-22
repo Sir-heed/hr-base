@@ -1,0 +1,114 @@
+[project]
+name = 'HR Base'
+description = 'HR Base App'
+keywords = []
+authors = [
+  'saheed <sademolaadedeji@gmail.com>',
+]
+
+license = 'Apache.2.0'
+classifiers = [
+  'Development Status :: 4 - Beta',
+  # 'Development Status :: 5 - Production/Stable',
+  'Environment :: Web Environment',
+  'Intended Audience :: End Users/Desktop',
+  'License :: OSI Approved :: Apache Software License',
+  'Natural Language :: English',
+  'Operating System :: OS Independent',
+  'Programming Language :: Python',
+  'Programming Language :: Python :: 3 :: Only',
+  'Programming Language :: Python :: 3.11',
+  'Topic :: Office/Business',
+]
+
+requires-python = '>=3.11'
+
+
+[tool.black]
+line-length = 100
+target-version = ['py311']
+skip-string-normalization = true
+
+
+[tool.coverage.run]
+branch = true
+concurrency = [
+  'multiprocessing',
+]
+disable_warnings = [
+  'no-data-collected',
+]
+omit = [
+  '*/migrations/*',
+  '*/tests/*',
+  '*settings*.py',
+  '*asgi.py',
+  '*wsgi.py',
+]
+parallel = true
+source = ['app']
+
+
+[tool.coverage.report]
+fail_under = 90
+omit = [
+  '*/migrations/*',
+  '*/tests/*',
+  '*settings*.py',
+  '*asgi.py',
+  '*wsgi.py',
+]
+show_missing = true
+
+
+[tool.flake8]
+min_python_version = '3.11'
+max-line-length = 100
+inline-quotes = 'double'
+extend--select = [
+  # Django rules
+  'DJ10', 'DJ11',
+]
+ignore = [
+  # From BLACK formatter
+  'B907', 'E203', 'E266', 'E501', 'W503',
+  # Django rules
+  'DJ01', 'DJ08',
+  # Simplify rules
+  'SIM111',
+]
+multiline-quotes = '"""'
+docstring-quotes = '"""'
+
+rst_roles = [
+  'class',
+  'py:class',
+]
+rst_substitutions = [
+  'release',
+  'version',
+]
+
+
+[tool.isort]
+profile = 'black'
+lines_after_imports = 2
+
+
+[tool.rstcheck]
+ignore_directives = [
+  'autoclass',
+  'autoenum',
+  'automethod',
+  'automodule',
+]
+ignore_rolse = [
+  'class',
+  'py:class',
+]
+ignore_messages = [
+]
+ignore_substitutions = [
+  'release',
+  'version',
+]

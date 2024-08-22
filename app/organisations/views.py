@@ -6,8 +6,8 @@ from rest_framework.viewsets import GenericViewSet
 from rest_framework.response import Response
 
 from accounts.choices import UserRole
-from core import permissions
-from core.utils import PaginatorMixin
+from app import permissions
+from app.utils import PaginatorMixin
 from . import models, serializers
 
 

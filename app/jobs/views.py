@@ -7,8 +7,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
-from core import permissions
-from core.utils import PaginatorMixin
+from app import permissions
+from app.utils import PaginatorMixin
 from accounts.choices import UserRole
 from . import models, serializers
 

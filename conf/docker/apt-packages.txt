@@ -1,0 +1,6 @@
+gcc
+git
+gnupg
+lsb-release
+procps
+wget

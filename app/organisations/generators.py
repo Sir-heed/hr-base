@@ -1,4 +1,4 @@
-from core.utils import generate_code
+from app.utils import generate_code
 
 
 def generate_staff_code():

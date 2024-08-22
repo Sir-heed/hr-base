@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from core.models import BaseAbstractModel, NamedAbstractModel
+from app.models import BaseAbstractModel, NamedAbstractModel
 from accounts.models import User
 from accounts.choices import UserRole
 from . import generators

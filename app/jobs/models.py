@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 from accounts.choices import UserRole
 from accounts.models import User
-from core.models import BaseAbstractModel
+from app.models import BaseAbstractModel
 from organisations.models import Organisation
 
 

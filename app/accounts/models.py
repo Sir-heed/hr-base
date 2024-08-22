@@ -2,7 +2,7 @@ from django.contrib.auth.models import AbstractBaseUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from core.models import BaseAbstractModel
+from app.models import BaseAbstractModel
 from .choices import UserRole
 from .managers import CustomUserManager
 

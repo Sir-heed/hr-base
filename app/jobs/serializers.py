@@ -1,7 +1,7 @@
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
-from core.serializers import ModelSerializer
+from app.serializers import ModelSerializer
 
 from . import models
 

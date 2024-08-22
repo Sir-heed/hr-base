@@ -1,4 +1,4 @@
-from core.choices import CustomEnum
+from app.choices import CustomEnum
 
 
 class UserRole(CustomEnum):

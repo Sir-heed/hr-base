@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 import os
 from datetime import timedelta
+import dj_database_url
 from pathlib import Path
 
 
@@ -30,12 +31,28 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_required('SECRET_KEY')
+SECRET_KEY = get_required('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
+# Current release & version
+# ------------------------------------------------------------------------------
+APP_RUN_DIR = os.getenv('APP_RUN_DIR')
+try:
+    with open(f'{APP_RUN_DIR}RELEASE') as fp:
+        RELEASE = fp.read().strip()
+except Exception:
+    RELEASE = ''
+
+try:
+    with open(f'{APP_RUN_DIR}VERSION') as fp:
+        VERSION = fp.read().strip()
+except Exception:
+    VERSION = ''
+
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")
+ADMIN_USERNAME = os.getenv('ADMIN_USERNAME', 'admin')
 
 # Application definition
 
@@ -65,7 +82,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'core.urls'
+ROOT_URLCONF = 'app.urls'
 
 TEMPLATES = [
     {
@@ -83,21 +100,29 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'core.wsgi.application'
+WSGI_APPLICATION = 'app.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'HOST': get_required('POSTGRES_HOST'),
+#         'PORT': os.getenv('POSTGRES_PORT', '5432'),
+#         'USER': get_required('POSTGRES_USER'),
+#         'PASSWORD': get_required('POSTGRES_PASSWORD'),
+#         'NAME': get_required('POSTGRES_DB'),
+#     },
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'HOST': get_required('POSTGRES_HOST'),
-        'PORT': os.getenv('POSTGRES_PORT', '5432'),
-        'USER': get_required('POSTGRES_USER'),
-        'PASSWORD': get_required('POSTGRES_PASSWORD'),
-        'NAME': get_required('POSTGRES_DB'),
-    },
+    'default': dj_database_url.parse(
+        get_required('DATABASE_URL'),
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
 
 
@@ -155,7 +180,7 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_RENDERER_CLASSES': [
         # 'rest_framework.renderers.JSONRenderer',
-        'core.utils.CustomJsonRenderer',
+        'app.utils.CustomJsonRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ]
 }

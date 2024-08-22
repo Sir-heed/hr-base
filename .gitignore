@@ -1,7 +1,97 @@
-__pycache__/
-.vscode/
-.env
-.DS_Store
-db.sqlite3
-.env
+# OSX
+**/.DS_Store
+**/.AppleDouble
+**/.LSOverride
 
+# Logs
+**/logs
+**/*.log
+**/pip-log.txt
+**/npm-debug.log*
+
+# Unit test / coverage reports
+**/coverage
+**/.coverage
+**/.coverage.*
+**/.tox
+**/nosetests.xml
+**/htmlcov
+
+# Translations
+**/*.mo
+**/*.pot
+
+# IDE
+
+# Visual Studio Code
+**/.vscode/
+
+# IDEA
+**/.idea/*
+**/*.iml
+**/*.ipr
+**/*.iws
+**/out/
+**/local.properties
+
+# Eclipse
+**/.project
+**/.classpath
+**/.settings
+
+# Vim
+**/*~
+**/*.swp
+**/*.swo
+
+# Sublime
+**/*.tmlanguage.cache
+**/*.tmPreferences.cache
+**/*.stTheme.cache
+**/*.sublime-workspace
+**/*.sublime-project
+
+# Python
+**/*.py[cod]
+**/__pycache__
+
+# Node
+**/.yarn/
+**/node_modules/
+**/package-lock.json
+**/.pnp.*
+**/.sass-cache
+
+# Virtual environments
+**/.env
+
+# Temporary files
+**/tmp/
+
+# Assets build files
+**/build/
+**/bundles/
+
+# React-Native
+**/Pods/
+**/vendor/bundle/
+**/dist/
+**/.gradle/
+**/.xcode.env.local
+
+# DB
+db.sqlite3
+
+# DB backups
+app/data/
+
+# license files
+**/licenses-*.csv
+
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
